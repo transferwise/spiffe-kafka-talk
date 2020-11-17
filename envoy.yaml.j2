@@ -27,6 +27,14 @@ static_resources:
 {% for kafkaClusterName, kafkaClusterConf in kafkaClusters.items() %}
       - name: kafka_{{ kafkaClusterName }}_bootstrap
         connect_timeout: 5s
+        health_checks:
+          - timeout: 5s
+            interval: 3s
+            unhealthy_threshold: 3
+            healthy_threshold: 2
+            event_log_path: /dev/stdout
+            tcp_health_check: {}
+            reuse_connection: false
         transport_socket:
           name: "envoy.transport_sockets.tls"
           typed_config:
@@ -75,6 +83,14 @@ static_resources:
 {% for brokerName, brokerConf in kafkaClusterConf.brokers.items() %}
       - name: kafka_{{ kafkaClusterName }}_{{ brokerName }}
         connect_timeout: 5s
+        health_checks:
+          - timeout: 5s
+            interval: 3s
+            unhealthy_threshold: 3
+            healthy_threshold: 2
+            event_log_path: /dev/stdout
+            tcp_health_check: {}
+            reuse_connection: false
         transport_socket:
           name: "envoy.transport_sockets.tls"
           typed_config:

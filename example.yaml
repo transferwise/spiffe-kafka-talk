@@ -27,6 +27,14 @@ static_resources:
 
       - name: kafka_test-cluster_bootstrap
         connect_timeout: 5s
+        health_checks:
+          - timeout: 5s
+            interval: 3s
+            unhealthy_threshold: 3
+            healthy_threshold: 2
+            event_log_path: /dev/stdout
+            tcp_health_check: {}
+            reuse_connection: false
         transport_socket:
           name: "envoy.transport_sockets.tls"
           typed_config:
@@ -81,6 +89,14 @@ static_resources:
 
       - name: kafka_test-cluster_kafka0
         connect_timeout: 5s
+        health_checks:
+          - timeout: 5s
+            interval: 3s
+            unhealthy_threshold: 3
+            healthy_threshold: 2
+            event_log_path: /dev/stdout
+            tcp_health_check: {}
+            reuse_connection: false
         transport_socket:
           name: "envoy.transport_sockets.tls"
           typed_config:
@@ -127,6 +143,14 @@ static_resources:
 
       - name: kafka_test-cluster_kafka1
         connect_timeout: 5s
+        health_checks:
+          - timeout: 5s
+            interval: 3s
+            unhealthy_threshold: 3
+            healthy_threshold: 2
+            event_log_path: /dev/stdout
+            tcp_health_check: {}
+            reuse_connection: false
         transport_socket:
           name: "envoy.transport_sockets.tls"
           typed_config:
